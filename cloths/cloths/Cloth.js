@@ -54,7 +54,6 @@ class Cloth extends  Component{
                 alignItems:'center',
                 flexDirection:'row',
                 justifyContent:'space-between'
-
                 }}>
                   
             <View style={{alignItems:'center'}}>
