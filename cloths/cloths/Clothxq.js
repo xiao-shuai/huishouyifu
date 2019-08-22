@@ -30,7 +30,14 @@ class Clothxq extends  Component{
  }
    
  componentWillMount(){
-  
+  fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/xq')
+  .then(res=>res.json()).then(res=>{
+
+  }
+
+  ).catch(err=>{
+
+  })
      
  }
 

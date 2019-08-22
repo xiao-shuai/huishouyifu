@@ -23,7 +23,10 @@ class News extends  Component{
  }
    
  componentWillMount(){
-  
+    fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/zhengshu')
+    .then(res=>res.json())
+    .then(res=>{})
+    .catch()
      
  }
 

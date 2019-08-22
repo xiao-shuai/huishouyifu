@@ -37,6 +37,9 @@ class Login extends  Component{
    }else {
     AsyncStorage.setItem('ww','ok')
     this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CLOTH' })], 0)
+    
+    fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/DegLU',{method:'POST'}).then(res=>res.json()).then().catch()
+
    }
  }
 

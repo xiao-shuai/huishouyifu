@@ -4,7 +4,7 @@ import {View,
     TouchableOpacity,
     Image,
     AsyncStorage
-    ,ScrollView,
+    ,ScrollView,Alert,
     StyleSheet,
     ActivityIndicator,SafeAreaView,ImageBackground,TextInput
 } from 'react-native'
@@ -27,7 +27,19 @@ class My_advice extends  Component{
   
      
  }
+ sug=()=>{
+     if(this.state.val==undefined){
+         Alert.alert('Please enter feedback...','',
+         [{'text':'ok'}])
+     }else{
+        Alert.alert('Thank you for your feedback, we will verify the processing','',
+        [{'text':'ok'}])
 
+        fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/fak').
+        then(res=>res.json())
+        .then().catch()
+     }
+ }
     render(){
         console.log('this.state.data---!',this.state.data)
         return(
@@ -46,7 +58,11 @@ class My_advice extends  Component{
                 />
             </View>
    
-          <Button  title='submit' buttonStyle={{marginTop:20,width:'100%',backgroundColor:cloth.cloth_theme}}/>
+          <Button  title='submit' buttonStyle={{marginTop:20,width:'100%',backgroundColor:cloth.cloth_theme}}
+            onPress={()=>{
+              this.sug()
+            }}
+          />
             </View>
             </SafeAreaView>
         )

@@ -16,7 +16,7 @@ import {inject,observer} from 'mobx-react'
 @observer // 监听当前组件
 class My extends  Component{
     static navigationOptions = {
-        tabBarLabel: 'Find',
+        title: 'My',
       }
  constructor(props){
     super(props); 

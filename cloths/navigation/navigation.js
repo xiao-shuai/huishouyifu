@@ -6,6 +6,7 @@ import {
   createSwitchNavigator 
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Cloth from '../cloths/Cloth'
 import Record from '../record/Record'
@@ -35,20 +36,20 @@ const CLOTH=createBottomTabNavigator(
            
             let iconName;
             if (routeName === 'Cloth') {
-              iconName = 'flower-poppy';
+              iconName = 'skin';
               // Sometimes we want to add badges to some icons. 
               // You can check the implementation below.
             //   IconComponent = HomeIconWithBadge; 
             } else if (routeName === 'Record') {
-                 iconName = `flower`;
+                 iconName = `book`;
             } else if (routeName==='Find'){
                 iconName=`flower-outline`
             }else if (routeName==`My`){
-                iconName=`flower-tulip`
+                iconName=`bulb1`
             }
     
             // You can return any component that you like here!
-            return <MaterialCommunityIcons name={iconName} style={{fontSize:25,color:focused?cloth.cloth_theme:cloth.cloth_hui2}}/>;
+            return <AntDesign name={iconName} style={{fontSize:25,color:focused?cloth.cloth_theme:cloth.cloth_hui2}}/>;
           },
         }),
         tabBarOptions: {

@@ -108,8 +108,7 @@ class Cloth extends  Component{
             }} buttonStyle={{borderRadius:20,backgroundColor:cloth.cloth_theme}} />
    <NoticeBar mode="closable"  style={{marginTop:10,backgroundColor:null}}>
     <Text style={{color:cloth.cloth_hui}}>
-      Notice: The arrival time of incomes and transfers of Yu 'E Bao will be
-      delayed during National Day.
+    A total of 10 appointments will receive an `Environmental Certificate of Honor'.
       </Text>
     </NoticeBar>
     
