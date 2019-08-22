@@ -27,7 +27,7 @@ class Cloth extends  Component{
        
     };
     
- }
+ } 
    
  componentWillMount(){
     AsyncStorage.getItem('ww')
