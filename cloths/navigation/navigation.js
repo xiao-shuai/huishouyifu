@@ -11,6 +11,14 @@ import Cloth from '../cloths/Cloth'
 import Record from '../record/Record'
 import My from '../my/My'
 import {cloth} from '../config/config'
+import OrderPage from '../cloths/OrderPage'
+import Clothxq from '../cloths/Clothxq'
+import News from '../my/News'
+import My_feed from '../my/My_feed'
+import My_zs from '../my/My_zs'
+import My_advice from  '../my/My_advice'
+import Login from '../log/Login'
+import Login2 from '../log/Login2'
 const CLOTH=createBottomTabNavigator(
     {
         // CLOTH: CLOTH,
@@ -57,7 +65,14 @@ const CLOTH=createBottomTabNavigator(
             headerBackTitle:null,
         })
      },
-    
+    OrderPage:{screen:OrderPage},
+    Clothxq:{screen:Clothxq},
+    My_feed:{screen:My_feed},
+    News:{screen:News},
+    My_zs:{screen:My_zs},
+    My_advice:{screen:My_advice},
+    Login:{screen:Login},
+    Login2:{screen:Login2}
    
 
   

@@ -41,19 +41,30 @@ class My extends  Component{
                <Text style={{fontSize:18,color:'white',marginTop:10}}>TOM</Text>
                <Text style={{marginTop:10,color:'white'}}>He's lazy. He left nothing</Text>
              </ImageBackground>
-             <TouchableOpacity style={styles.aa}>
+             <TouchableOpacity style={styles.aa} onPress={()=>{
+                 this.props.navigation.navigate('News')
+             }}>
                  <Text style={{fontSize:16,color:'#717D7E'}}>My news</Text>
               <Ionicons name='ios-arrow-forward' size={25} style={{color:'#A6ACAF'}}/>
              </TouchableOpacity>
-             <TouchableOpacity style={[styles.aa,{marginTop:1}]}>
+             <TouchableOpacity style={[styles.aa,{marginTop:1}]} onPress={()=>{
+                 this.props.navigation.navigate('My_zs')
+             }}>
                  <Text style={{fontSize:16,color:'#717D7E'}}>My certificate</Text>
               <Ionicons name='ios-arrow-forward' size={25} style={{color:'#A6ACAF'}}/>
              </TouchableOpacity>
-             <TouchableOpacity style={[styles.aa,{marginTop:1}]}>
+             <TouchableOpacity style={[styles.aa,{marginTop:1}]} onPress={()=>{
+                 this.props.navigation.navigate('My_advice')
+             }}>
                  <Text style={{fontSize:16,color:'#717D7E'}}>My advice</Text>
               <Ionicons name='ios-arrow-forward' size={25} style={{color:'#A6ACAF'}}/>
              </TouchableOpacity>
-             <TouchableOpacity style={[styles.aa,{marginTop:20,alignItems:'center',justifyContent:'center'}]}>
+             <TouchableOpacity style={[styles.aa,{marginTop:20,alignItems:'center',justifyContent:'center'}]} 
+               onPress={()=>{
+                   this.props.navigation.navigate('Login')
+                   AsyncStorage.removeItem('ww')
+               }}
+             >
                  <Text style={{fontSize:18,color:'#EC7063'}}>sign out</Text>
               {/* <Ionicons name='ios-arrow-forward' size={25} style={{color:'#A6ACAF'}}/> */}
              </TouchableOpacity>

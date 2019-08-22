@@ -9,12 +9,16 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import CLOTHSDAOHANG from './cloths/navigation/navigation'
+import {Provider} from 'mobx-react'
+import store from './cloths/config/index'
 console.disableYellowBox=true
 
 export default class App extends Component{
   render() {
     return (
+      <Provider {...store}>
      <CLOTHSDAOHANG />
+     </Provider>
     );
   }
 }

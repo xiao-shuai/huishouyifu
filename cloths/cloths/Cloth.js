@@ -15,8 +15,8 @@ import NoticeBar from '@ant-design/react-native/lib/notice-bar'
 import {inject,observer} from 'mobx-react'
 import Swiper from 'react-native-swiper'
 import  {cloth} from '../config/config'
-// @inject(["mbx"])
-// @observer // 监听当前组件
+@inject(["qew"])
+@observer // 监听当前组件
 class Cloth extends  Component{
     static navigationOptions = {
         tabBarLabel: 'Find',
@@ -30,12 +30,21 @@ class Cloth extends  Component{
  }
    
  componentWillMount(){
-  
-     
+    AsyncStorage.getItem('ww')
+    .then(res=>{
+     if(res!==null){
+       this.props.qew.islogin(true)
+     }
+    })
+    .catch(err=>{
+
+    })
  }
 
     render(){
-        console.log('this.state.data---!',this.state.data)
+        console.log('login:',this.props.qew.login)
+        const login=this.props.qew.login
+
         return(
             
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
@@ -45,10 +54,14 @@ class Cloth extends  Component{
          <Text style={{fontSize:18,fontWeight:'500',color:'white'}}>Clothes recycling</Text>
           </View>  
           <ScrollView contentContainerStyle={{width:cloth.cloth_w,alignItems:'center'}}>
+              <TouchableOpacity onPress={()=>{
+                  this.props.navigation.navigate('Clothxq',{info:require('../img/banner.png')})
+              }}>
               <Image source={require('../img/banner.png')} 
                style={{width:cloth.cloth_w,height:cloth.cloth_h*.25,marginTop:10}}
                resizeMode='stretch'
                />
+               </TouchableOpacity>
              <View style={{width:cloth.cloth_w,
                 padding:20,
                 alignItems:'center',
@@ -71,7 +84,11 @@ class Cloth extends  Component{
                 <Text style={{color:cloth.cloth_hui2}}>carry out</Text>
             </View>
             </View>
-            <Button title={'Make an appointment'} containerStyle={{
+            <Button title={'Make an appointment'}
+            onPress={()=>{
+                this.props.navigation.navigate('OrderPage')
+            }}
+             containerStyle={{
                 width:'90%',marginTop:20
             }} buttonStyle={{borderRadius:20,backgroundColor:cloth.cloth_theme}} />
    <NoticeBar mode="closable"  style={{marginTop:10,backgroundColor:null}}>
@@ -82,12 +99,16 @@ class Cloth extends  Component{
     </NoticeBar>
     
     <Swiper style={{marginTop:20,height:cloth.cloth_h*.2}}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+            this.props.navigation.navigate('Clothxq',{info:require('../img/btm1.png')})
+        }}>
             <Image source={require('../img/btm1.png')} style={{
                 width:'100%',height:cloth.cloth_h*.2
             }}/>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+            this.props.navigation.navigate('Clothxq',{info:require('../img/btm2.png')})
+        }}>
             <Image source={require('../img/btm2.png')} style={{
                 width:'100%',height:cloth.cloth_h*.2
             }}/>
