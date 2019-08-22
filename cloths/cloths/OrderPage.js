@@ -6,7 +6,7 @@ import {View,
     AsyncStorage
     ,ScrollView,
     StyleSheet,
-    ActivityIndicator,SafeAreaView
+    ActivityIndicator,SafeAreaView,Alert
 } from 'react-native'
 import {Button,Input,Overlay} from 'react-native-elements'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -35,7 +35,21 @@ class OrderPage extends  Component{
  onChange = (value) => {
     this.setState({ value });
   }
+SubMit=()=>{
+  if(this.state.name==undefined){
+    Alert.alert('Please input Username','',[{'text':'ok'},])
+  } else if (this.state.address==undefined){
+    Alert.alert('Please input address','',[{'text':'ok'},])
+  }else if(this.state.phone==undefined){
+    Alert.alert('Please input phone','',[{'text':'ok'},])
+  }else {
+    Alert.alert('Successful appointment!','',[{'text':'ok'},])
+    fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/yuyue',{method:'POST'})
+    .then(res=>res.json())
+    .then().catch()
+  }
 
+}
     render(){
         console.log('this.state.data---!',this.state.data)
         const data=[
@@ -119,7 +133,9 @@ class OrderPage extends  Component{
            }}/>
            </View>
            <Button title='Fill it out and submit' buttonStyle={{marginTop:20,
-            backgroundColor:cloth.cloth_theme,marginBottom:20}} />
+            backgroundColor:cloth.cloth_theme,marginBottom:20}} onPress={()=>{
+            this.SubMit()
+            }} />
           </ScrollView>
          </View>
 

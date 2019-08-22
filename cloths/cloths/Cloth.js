@@ -6,11 +6,11 @@ import {View,
     AsyncStorage
     ,ScrollView,
     StyleSheet,
-    ActivityIndicator,SafeAreaView
+    ActivityIndicator,SafeAreaView,Alert
 } from 'react-native'
 import {Button,Input,Overlay} from 'react-native-elements'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-// import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import NoticeBar from '@ant-design/react-native/lib/notice-bar'
 import {inject,observer} from 'mobx-react'
 import Swiper from 'react-native-swiper'
@@ -19,7 +19,7 @@ import  {cloth} from '../config/config'
 @observer // 监听当前组件
 class Cloth extends  Component{
     static navigationOptions = {
-        tabBarLabel: 'Find',
+        
       }
  constructor(props){
     super(props); 
@@ -40,7 +40,22 @@ class Cloth extends  Component{
 
     })
  }
+ componentDidMount(){
+     fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/img')
+     .then(res=>res.json()).then(
 
+     ).catch(
+
+     )
+ }
+
+ dl_page=()=>{
+     Alert.alert('prompt','You are not logged in yet, please login',
+     [{'text':'Later'},{'text':'Go to login',onPress:()=>{
+        // this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Login' })], 0)
+        this.props.navigation.navigate('Login')
+     }}])
+ } 
     render(){
         console.log('login:',this.props.qew.login)
         const login=this.props.qew.login
@@ -86,7 +101,7 @@ class Cloth extends  Component{
             </View>
             <Button title={'Make an appointment'}
             onPress={()=>{
-                this.props.navigation.navigate('OrderPage')
+               login? this.props.navigation.navigate('OrderPage'):this.dl_page()
             }}
              containerStyle={{
                 width:'90%',marginTop:20
