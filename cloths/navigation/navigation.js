@@ -20,6 +20,7 @@ import My_zs from '../my/My_zs'
 import My_advice from  '../my/My_advice'
 import Login from '../log/Login'
 import Login2 from '../log/Login2'
+import Cloth_show from '../cloths/Cloth_show'
 const CLOTH=createBottomTabNavigator(
     {
         // CLOTH: CLOTH,
@@ -73,7 +74,8 @@ const CLOTH=createBottomTabNavigator(
     My_zs:{screen:My_zs},
     My_advice:{screen:My_advice},
     Login:{screen:Login},
-    Login2:{screen:Login2}
+    Login2:{screen:Login2},
+    Cloth_show:{screen:Cloth_show}
    
 
   

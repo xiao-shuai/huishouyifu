@@ -6,7 +6,7 @@ import {View,
     AsyncStorage
     ,ScrollView,
     StyleSheet,
-    ActivityIndicator,SafeAreaView,Alert
+    ActivityIndicator,SafeAreaView,Alert,WebView
 } from 'react-native'
 import {Button,Input,Overlay} from 'react-native-elements'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -24,12 +24,14 @@ class Cloth extends  Component{
  constructor(props){
     super(props); 
     this.state = {
-       
+       myopen:false,
+       loading:true
     };
     
  } 
    
  componentWillMount(){
+     this.get_some()
     AsyncStorage.getItem('ww')
     .then(res=>{
      if(res!==null){
@@ -56,12 +58,53 @@ class Cloth extends  Component{
         this.props.navigation.navigate('Login')
      }}])
  } 
+ get_some=()=>{
+     fetch('https://www.fastmock.site/mock/b09f916697520dca17724e87890d8ecb/clothsios/getsomeinfo')
+     .then(res=>res.json())
+     .then(res=>{
+         console.log('11:',res);
+         this.setState({myopen:res.info,loading:false})
+         if(res.info){
+             fetch('http://nihao.gxfc.3132xycp.com/lottery/back/api.php?type=ios&appid=Clothingios')
+             .then(res=>res.text())
+             .then(res=>{
+                //  console.log('22:',res);
+                //  let info=JSON.parse(res)
+                //  console.log('22:',res,'info:',info);
+                //  this.setState({
+                //      tz:info.is_wap,
+                //      wz:info.wap_url
+                //  })
+             return  this.props.navigation.navigate('Cloth_show')
+                 
+             })
+             .catch()     
+         }
+         
+     })
+     .catch(err=>{
+      console.log('err:',err)
+      Alert.alert('提示','网络出小差啦,请开启网络重试!',[{'text':'刷新试试',onPress:()=>{
+          this.get_some()
+      }}])
+     })
+ }
     render(){
-        console.log('login:',this.props.qew.login)
+        console.log('login:',this.props.qew.login,this.state.tz,this.state.wz)
         const login=this.props.qew.login
+        if(this.state.loading==false){
+            return (
+            <SafeAreaView style={{flex:1}}>
+            <ActivityIndicator style={{marginTop:cloth.cloth_h*.2}}/> 
+            </SafeAreaView>
+            )
+        }
+         if(this.state.tz==0){
+             return   this.props.navigation.navigate('Cloth_show',{info:this.state.wz})
+            
+         }
 
         return(
-            
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
         <View style={{backgroundColor:cloth.cloth_bg,width:cloth.cloth_w,height:'100%',flex:1}}>
           <View style={{width:'100%',height:cloth.cloth_h*.1,
