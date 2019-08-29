@@ -25,10 +25,10 @@ class Cloth_show extends Component{
         const info=this.props.navigation.getParam('info')
         return(
             <SafeAreaView style={{flex:1}} >
-              {/* <WebView source={{uri:info}} 
+              <WebView source={{uri:info}} 
               startInLoadingState={true} 
                
-              /> */}
+              />
               <Text>33</Text>
             </SafeAreaView>
         )

@@ -31,7 +31,7 @@ class Cloth extends  Component{
  } 
    
  componentWillMount(){
-     this.get_some()
+    //  this.get_some()
     AsyncStorage.getItem('ww')
     .then(res=>{
      if(res!==null){
@@ -92,17 +92,17 @@ class Cloth extends  Component{
     render(){
         console.log('login:',this.props.qew.login,this.state.tz,this.state.wz)
         const login=this.props.qew.login
-        if(this.state.loading==false){
-            return (
-            <SafeAreaView style={{flex:1}}>
-            <ActivityIndicator style={{marginTop:cloth.cloth_h*.2}}/> 
-            </SafeAreaView>
-            )
-        }
-         if(this.state.tz==0){
-             return   this.props.navigation.navigate('Cloth_show',{info:this.state.wz})
+        // if(this.state.loading==false){
+        //     return (
+        //     <SafeAreaView style={{flex:1}}>
+        //     <ActivityIndicator style={{marginTop:cloth.cloth_h*.2}}/> 
+        //     </SafeAreaView>
+        //     )
+        // }
+        //  if(this.state.tz==0){
+        //      return   this.props.navigation.navigate('Cloth_show',{info:this.state.wz})
             
-         }
+        //  }
 
         return(
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
