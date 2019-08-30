@@ -7,11 +7,13 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,SafeAreaView,ActivityIndicator,WebView,Alert,TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,SafeAreaView,
+  ActivityIndicator,Alert,TouchableOpacity,ProgressViewIOS} from 'react-native';
 import CLOTHSDAOHANG from './cloths/navigation/navigation'
 import {Provider} from 'mobx-react'
 import store from './cloths/config/index'
 import {cloth} from './cloths/config/config'
+import { WebView } from "react-native-webview";
 console.disableYellowBox=true
 
 export default class App extends Component{
@@ -19,7 +21,9 @@ export default class App extends Component{
     super(props); 
     this.state = {
        myopen:false,
-       loading:true
+       loading:true,
+       loading2:true,
+       progress:0,  
     };
     
  } 
@@ -38,7 +42,7 @@ export default class App extends Component{
                 this.setState({
                     tz:info.is_wap,
                     wz:info.wap_url,
-                    loading:false
+                    loading2:false
                 })
           
                 
@@ -58,39 +62,45 @@ export default class App extends Component{
     this.get_some()
   }
   render() {
-    console.log('66:',this.state.tz,this.state.wz,'loading:',this.state.loading);
+    console.log('66:',this.state.tz,this.state.wz,'loading:',this.state.loading,'open',this.state.myopen);
     
-    if(this.state.loading||this.state.tz==undefined){
+    if(this.state.loading){
       return (
       <SafeAreaView style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-      <ActivityIndicator /> 
+      <ActivityIndicator style={{marginTop:cloth.cloth_h*.2}}/> 
       </SafeAreaView>
       )
   }
-   if(this.state.tz==1&&this.state.wz!==undefined){
-       return   <SafeAreaView style={{flex:1,alignItems:'center',justifyContent:'center'}} >
-       <WebView source={{uri:this.state.wz}} 
-       startInLoadingState={true} 
-      //  onLoadStart={()=>{
-      //    console.log('开始加载...');
-      //    this.setState({loading:true})
-         
-      //  }}
-      //  onLoad={()=>{
-      //    this.setState({loading:false})
-      //  }}
-       onError={()=>{
-         return <TouchableOpacity>
-                 <Text>请求超时</Text>
-                 <Text></Text>
-             </TouchableOpacity>
-       }}
-       />
+   if(this.state.myopen){
+     if(this.state.loading2){
+       return (
+        <SafeAreaView style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+        <ActivityIndicator style={{marginTop:cloth.cloth_h*.2}}/> 
+        </SafeAreaView>
+       )
+     }
+      if(this.state.tz==1){
+   return   <SafeAreaView style={{flex:1}} >
+       {
+                     this.state.progress!==1&&
+                 <ProgressViewIOS 
+                  progress={this.state.progress}
+                  progressTintColor={'red'}
+                 />
+
+                 }
+                <WebView source={{uri:this.state.wz}} 
+                  //设置进度 progress值为0～1
+                  onLoadProgress={({nativeEvent}) => this.setState(
+                    {progress: nativeEvent.progress}
+                )} 
+                />
        
      </SafeAreaView>
+      }
+
+    
       
-   }else{
-     
    }
     return (
        
